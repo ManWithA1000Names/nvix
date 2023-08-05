@@ -62,7 +62,7 @@
     normal = {
       # LSP <start>
       ${";"} = [ (_: "fmt") "Format" ];
-      g.h = [ (_: vim.lsp.buf.hover) "Hover" ];
+      g.h = [ (_: "vim.lsp.buf.hover") "Hover" ];
       g.l = [ (_: "line_diagnostics") "line diagnostics" ];
       g.a = [ (_: "vim.lsp.buf.code_action") "Code action" ];
       g.d = [ (_: "vim.lsp.buf.definition") "Go to definition" ];
@@ -155,34 +155,34 @@
           C = [ ":Telescope git_bcommits<CR>" "Checkout commit (for current file)" ];
         };
       };
+    };
 
-      insert = {
-        j.k = [ "<Esc>" "Exit insert mode" ];
-        k.j = [ "<Esc>" "Exit insert mode" ];
-        ${"<A-j>"} = [ "<Esc>:m .+1<CR>==gi" "move current line down" ];
-        ${"<A-k>"} = [ "<Esc>:m .-2<CR>==gi" "move current line up" ];
+    insert = {
+      j.k = [ "<Esc>" "Exit insert mode" ];
+      k.j = [ "<Esc>" "Exit insert mode" ];
+      ${"<A-j>"} = [ "<Esc>:m .+1<CR>==gi" "move current line down" ];
+      ${"<A-k>"} = [ "<Esc>:m .-2<CR>==gi" "move current line up" ];
+    };
+
+    visual = {
+      ${"<A-j>"} = [ ":m >+1<CR>gv=gv" "move current selection down" ];
+      ${"<A-K>"} = [ ":m <-2<CR>gv=gv" "move current selection up" ];
+      ${"<"} = [ "<gv" "dedent" ];
+      ${">"} = [ ">gv" "indent" ];
+
+      ${"<leader>"} = {
+        d = [ ''"_d'' "Delete wihtout copying" ];
+        p = [ ''"_dP"'' "Paste wihtout copying" ];
       };
+    };
 
-      visual = {
-        ${"<A-j>"} = [ ":m >+1<CR>gv=gv" "move current selection down" ];
-        ${"<A-K>"} = [ ":m <-2<CR>gv=gv" "move current selection up" ];
-        ${"<"} = [ "<gv" "dedent" ];
-        ${">"} = [ ">gv" "indent" ];
-
-        ${"<leader>"} = {
-          d = [ ''"_d'' "Delete wihtout copying" ];
-          p = [ ''"_dP"'' "Paste wihtout copying" ];
-        };
-      };
-
-      terminal = {
-        ${"<Esc>"} = [ "<Cmd>ToggleTermToggleAll<CR>" "Toggle the terminal" ];
-        ${"jk"} = [ ''<C-\><C-n>'' "Escape terminal mode" ];
-        ${"<C-h>"} = [ "<Cmd>wincmd h<CR>" "Move to the left window" ];
-        ${"<C-k>"} = [ "<Cmd>wincmd k<CR>" "Move to the up window" ];
-        ${"<C-j>"} = [ "<Cmd>wincmd j<CR>" "Move to the down window" ];
-        ${"<C-l>"} = [ "<Cmd>wincmd l<CR>" "Move to the right window" ];
-      };
+    terminal = {
+      ${"<Esc>"} = [ "<Cmd>ToggleTermToggleAll<CR>" "Toggle the terminal" ];
+      ${"jk"} = [ ''<C-\><C-n>'' "Escape terminal mode" ];
+      ${"<C-h>"} = [ "<Cmd>wincmd h<CR>" "Move to the left window" ];
+      ${"<C-k>"} = [ "<Cmd>wincmd k<CR>" "Move to the up window" ];
+      ${"<C-j>"} = [ "<Cmd>wincmd j<CR>" "Move to the down window" ];
+      ${"<C-l>"} = [ "<Cmd>wincmd l<CR>" "Move to the right window" ];
     };
   };
 }

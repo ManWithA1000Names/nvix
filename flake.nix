@@ -3,6 +3,12 @@
 
   inputs = {
     vix.url = "github:manwitha1000names/vix";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
+
+    plenary = {
+      url = "github:nvim-lua/plenary.nvim";
+      flake = false;
+    };
 
     lspconfig = {
       url = "github:neovim/nvim-lspconfig";
@@ -26,23 +32,10 @@
   };
 
   outputs =
-    { self
-    , nixpkgs
-    , vix
-    , null-ls
-    , which-key
-    , lspconfig
-    , tokyonight
-    }: vix.mkFlake {
+    { self, nixpkgs, vix, plenary, null-ls, which-key, lspconfig, tokyonight }:
+    vix.mkFlake {
       config = import ./neovim-config.nix;
-      plugins = [
-        lspconfig
-        null-ls
-        which-key
-        tokyonight
-      ];
-      languages = [
-        vix.languages.nix
-      ];
+      plugins = [ plenary lspconfig null-ls which-key tokyonight ];
+      languages = [ vix.languages.nix ];
     };
 }

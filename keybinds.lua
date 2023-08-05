@@ -12,7 +12,7 @@ local function line_diagnostics()
 end
 
 local function fmt()
-	vim.lsp.buf.formar()
+	vim.lsp.buf.format()
 end
 -- LSP <end>
 
