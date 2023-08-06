@@ -28,6 +28,9 @@ local function new_term()
 		if active_term == nil then
 			active_term = term.Terminal:new({
 				direction = "horizontal",
+				env = {
+					XDG_CONFIG_HOME = vim.env.OG_XDG_CONFIG_HOME or vim.fn.expand("~/.config/"),
+				},
 			})
 		end
 		active_term:toggle()
@@ -46,6 +49,9 @@ local function custom_toggle_term()
 		if active == nil then
 			active = term.Terminal:new({
 				direction = "float",
+				env = {
+					XDG_CONFIG_HOME = vim.env.OG_XDG_CONFIG_HOME or vim.fn.expand("~/.config/"),
+				},
 			})
 		end
 		active:toggle()
