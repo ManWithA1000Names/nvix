@@ -25,6 +25,11 @@
       url = "github:j-hui/fidget.nvim/legacy";
       flake = false;
     };
+
+    rust-tools = {
+      url = "github:simrat39/rust-tools.nvim";
+      flake = false;
+    };
     # } Languages <end>
 
     # Completions <start> {
@@ -155,22 +160,26 @@
     , cmp-nvim-lsp-signature-help, cmp_luasnip, which-key, tokyonight, horizon
     , tree-sitter, telescope, nvim-tree, nvim-web-devicons, bufferline
     , toggleterm, nvim-autopairs, nvim-ts-autotag, comment
-    , nvim-ts-context-commentstring, gitsigns, project }:
+    , nvim-ts-context-commentstring, gitsigns, project, rust-tools }:
     vix.mkFlake {
       config = import ./neovim-config.nix;
       plugins = [
         plenary
         null-ls
         which-key
+
         tokyonight
         horizon
+
         LuaSnip
         cmp-path
         cmp-buffer
+        rust-tools
         cmp-cmdline
         cmp-nvim-lsp
-        cmp-nvim-lsp-signature-help
         cmp_luasnip
+        cmp-nvim-lsp-signature-help
+
         nvim-web-devicons
         nvim-ts-autotag
         nvim-ts-context-commentstring
@@ -178,37 +187,37 @@
           name = "nvim-tree";
           src = nvim-tree;
           urgent = true;
-          config = builtins.readFile ./plugins-configs/nvim-tree.lua;
+          config = builtins.readFile ./lua/plugins-configs/nvim-tree.lua;
         }
         {
           name = "tree-sitter";
           src = tree-sitter;
-          config = builtins.readFile ./plugins-configs/treesitter.lua;
+          config = builtins.readFile ./lua/plugins-configs/treesitter.lua;
         }
         {
           name = "telescope";
           src = telescope;
-          config = builtins.readFile ./plugins-configs/telescope.lua;
+          config = builtins.readFile ./lua/plugins-configs/telescope.lua;
         }
         {
           name = "lspconfig";
           src = lspconfig;
-          config = builtins.readFile ./plugins-configs/lspconfig.lua;
+          config = builtins.readFile ./lua/plugins-configs/lspconfig.lua;
         }
         {
           name = "comment";
           src = comment;
-          config = builtins.readFile ./plugins-configs/comment.lua;
+          config = builtins.readFile ./lua/plugins-configs/comment.lua;
         }
         {
           name = "cmp";
           src = cmp;
-          config = builtins.readFile ./plugins-configs/cmp.lua;
+          config = builtins.readFile ./lua/plugins-configs/cmp.lua;
         }
         {
           name = "nvim-autopairs";
           src = nvim-autopairs;
-          config = builtins.readFile ./plugins-configs/autopairs.lua;
+          config = builtins.readFile ./lua/plugins-configs/autopairs.lua;
         }
         {
           name = "bufferline";
@@ -242,6 +251,17 @@
           src = fidget;
         }
       ];
-      languages = [ vix.languages.nix ];
+      languages = [
+        vix.languages.nix
+        vix.languages."c/cpp"
+        vix.languages.elm
+        vix.languages.go
+        vix.languages.lua
+        vix.languages.python
+        vix.languages.rust
+        vix.languages.sh
+        vix.languages.tailwindcss
+        vix.languages."ts/js"
+      ];
     };
 }

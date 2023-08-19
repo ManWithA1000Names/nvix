@@ -9,7 +9,10 @@
     nu = true;
     relativenumber = true;
     conceallevel = 0;
-    completeopt = [ "menuone" "noselect" ];
+    completeopt = [ "menuone" ];
+
+    clipboard = "unnamedplus";
+
     errorbells = false;
     tabstop = 2;
     softtabstop = 2;
@@ -58,10 +61,10 @@
 
   colorscheme = "tokyonight-night";
   keybinds = {
-    lua = builtins.readFile ./keybinds.lua;
+    lua = builtins.readFile ./lua/keybind_functions.lua;
     normal = {
       # LSP <start>
-      ${";"} = [ (_: "fmt") "Format" ];
+      ";" = [ (_: "fmt") "Format" ];
       g.h = [ (_: "vim.lsp.buf.hover") "Hover" ];
       g.l = [ (_: "line_diagnostics") "line diagnostics" ];
       g.a = [ (_: "vim.lsp.buf.code_action") "Code action" ];
@@ -81,25 +84,25 @@
       n = [ "nzzzv" "Go to next match and center the screen" ];
       N = [ "Nzzzv" "Go to prev match and center the screen" ];
 
-      ${"."} = [ ";" "nex thing" ];
-      ${"'"} = [ ":w<CR>" "Save" ];
+      "." = [ ";" "nex thing" ];
+      "'" = [ ":w<CR>" "Save" ];
       ${''\''} = [ "za" "Fold" ];
+      "<C-q>" = [ ":q<CR>" "Quit" ];
       ${''"''} = [ ":nohl<CR>" "no highlight" ];
-      ${"<C-i>"} = [ "<C-i>" "jump forward" ];
-      ${"<C-h>"} = [ "<C-w>h" "Move to the window to the left" ];
-      ${"<C-j>"} = [ "<C-w>j" "Move to the window below" ];
-      ${"<C-k>"} = [ "<C-w>k" "Move to the window above" ];
-      ${"<C-l>"} = [ "<C-w>l" "Move to the window to the right" ];
-      ${"<C-q>"} = [ ":q<CR>" "Quit" ];
-      ${"<A-j>"} = [ ":m .+1<CR>==" "Move current line up" ];
-      ${"<A-k>"} = [ ":m .-2<CR>==" "Move current line down" ];
-      ${"<Return>"} = [ "@a" "Map enter to the 'a' macro" ];
-      ${"<C-Up>"} = [ ":resize -2<CR>" "Make the smaller on the y axis" ];
-      ${"<C-Down>"} = [ ":resize +2<CR>" "Make the window bigger on the y axis" ];
-      ${"<C-Left>"} = [ ":vertical resize +2<CR>" "Make the window bigger on the x axis" ];
-      ${"<C-Right>"} = [ ":vertical resize -2<CR>" "Make the window smaller on the x axis" ];
+      "<C-i>" = [ "<C-i>" "jump forward" ];
+      "<C-j>" = [ "<C-w>j" "Move to the window below" ];
+      "<C-k>" = [ "<C-w>k" "Move to the window above" ];
+      "<Return>" = [ "@a" "Map enter to the 'a' macro" ];
+      "<A-j>" = [ ":m .+1<CR>==" "Move current line up" ];
+      "<A-k>" = [ ":m .-2<CR>==" "Move current line down" ];
+      "<C-h>" = [ "<C-w>h" "Move to the window to the left" ];
+      "<C-l>" = [ "<C-w>l" "Move to the window to the right" ];
+      "<C-Up>" = [ ":resize -2<CR>" "Make the smaller on the y axis" ];
+      "<C-Down>" = [ ":resize +2<CR>" "Make the window bigger on the y axis" ];
+      "<C-Left>" = [ ":vertical resize +2<CR>" "Make the window bigger on the x axis" ];
+      "<C-Right>" = [ ":vertical resize -2<CR>" "Make the window smaller on the x axis" ];
 
-      ${"<leader>"} = {
+      "<leader>" = {
         # LSP <start>
         r = [ (_: "vim.lsp.buf.rename") "Rename" ];
         l = {
@@ -160,15 +163,15 @@
     insert = {
       j.k = [ "<Esc>" "Exit insert mode" ];
       k.j = [ "<Esc>" "Exit insert mode" ];
-      ${"<A-j>"} = [ "<Esc>:m .+1<CR>==gi" "move current line down" ];
-      ${"<A-k>"} = [ "<Esc>:m .-2<CR>==gi" "move current line up" ];
+      "<A-j>" = [ "<Esc>:m .+1<CR>==gi" "move current line down" ];
+      "<A-k>" = [ "<Esc>:m .-2<CR>==gi" "move current line up" ];
     };
 
     visual = {
-      ${"<A-j>"} = [ ":m >+1<CR>gv=gv" "move current selection down" ];
-      ${"<A-K>"} = [ ":m <-2<CR>gv=gv" "move current selection up" ];
-      ${"<"} = [ "<gv" "dedent" ];
-      ${">"} = [ ">gv" "indent" ];
+      "<A-j>" = [ ":m >+1<CR>gv=gv" "move current selection down" ];
+      "<A-K>" = [ ":m <-2<CR>gv=gv" "move current selection up" ];
+      "<" = [ "<gv" "dedent" ];
+      ">" = [ ">gv" "indent" ];
 
       ${"<leader>"} = {
         d = [ ''"_d'' "Delete wihtout copying" ];
@@ -177,12 +180,12 @@
     };
 
     terminal = {
-      ${"<Esc>"} = [ "<Cmd>ToggleTermToggleAll<CR>" "Toggle the terminal" ];
-      ${"jk"} = [ ''<C-\><C-n>'' "Escape terminal mode" ];
-      ${"<C-h>"} = [ "<Cmd>wincmd h<CR>" "Move to the left window" ];
-      ${"<C-k>"} = [ "<Cmd>wincmd k<CR>" "Move to the up window" ];
-      ${"<C-j>"} = [ "<Cmd>wincmd j<CR>" "Move to the down window" ];
-      ${"<C-l>"} = [ "<Cmd>wincmd l<CR>" "Move to the right window" ];
+      "<Esc>" = [ "<Cmd>ToggleTermToggleAll<CR>" "Toggle the terminal" ];
+      "jk" = [ ''<C-\><C-n>'' "Escape terminal mode" ];
+      "<C-h>" = [ "<Cmd>wincmd h<CR>" "Move to the left window" ];
+      "<C-k>" = [ "<Cmd>wincmd k<CR>" "Move to the up window" ];
+      "<C-j>" = [ "<Cmd>wincmd j<CR>" "Move to the down window" ];
+      "<C-l>" = [ "<Cmd>wincmd l<CR>" "Move to the right window" ];
     };
   };
 }
