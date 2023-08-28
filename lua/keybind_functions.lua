@@ -28,9 +28,6 @@ local function new_term()
 		if active_term == nil then
 			active_term = term.Terminal:new({
 				direction = "horizontal",
-				env = {
-					XDG_CONFIG_HOME = vim.env.OG_XDG_CONFIG_HOME or vim.fn.expand("~/.config/"),
-				},
 			})
 		end
 		active_term:toggle()
@@ -49,9 +46,6 @@ local function custom_toggle_term()
 		if active == nil then
 			active = term.Terminal:new({
 				direction = "float",
-				env = {
-					XDG_CONFIG_HOME = vim.env.OG_XDG_CONFIG_HOME or vim.fn.expand("~/.config/"),
-				},
 			})
 		end
 		active:toggle()
@@ -95,9 +89,11 @@ local function nvim_tree_focus_toggle()
 	local winNum = vim.api.nvim_get_current_win()
 	vim.api.nvim_create_autocmd("WinEnter", {
 		callback = function()
-			if vim.bo.filetype ~= "NvimTree" then
-				winNum = vim.api.nvim_get_current_win()
-			end
+			vim.defer_fn(function()
+				if vim.bo.filetype ~= "NvimTree" then
+					winNum = vim.api.nvim_get_current_win()
+				end
+			end, 10)
 		end,
 	})
 	return function()

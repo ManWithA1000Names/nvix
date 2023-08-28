@@ -1,15 +1,21 @@
 {
-  init = '''';
+  init = "";
 
   set = {
     lua = ''
       vim.opt.isfname:append("@-@")
       vim.opt.shortmess:append("c")
+      vim.opt.listchars:append("eol:↴")
+
+      vim.cmd [[highlight IndentBlanklineIndent1 guibg=#1A1B26 gui=nocombine]]
+      vim.cmd [[highlight IndentBlanklineIndent2 guibg=#191924 gui=nocombine]]
     '';
+    laststatus = 3;
+    list = true;
     nu = true;
     relativenumber = true;
     conceallevel = 0;
-    completeopt = [ "menuone" ];
+    completeopt = [ "menuone" "noselect" ];
 
     clipboard = "unnamedplus";
 
@@ -25,7 +31,7 @@
 
     swapfile = false;
     backup = false;
-    undodir = _: ''os.getenv("HOME") .. "/.vim/undodir"'';
+    undodir = _: ''vim.fn.stdpath("cache") .. "/vix/undodir"'';
     undofile = true;
 
     hlsearch = true;
@@ -63,6 +69,7 @@
   keybinds = {
     lua = builtins.readFile ./lua/keybind_functions.lua;
     normal = {
+      useWhichKey = true;
       # LSP <start>
       ";" = [ (_: "fmt") "Format" ];
       g.h = [ (_: "vim.lsp.buf.hover") "Hover" ];
@@ -86,7 +93,7 @@
 
       "." = [ ";" "nex thing" ];
       "'" = [ ":w<CR>" "Save" ];
-      ${''\''} = [ "za" "Fold" ];
+      ${"\\"} = [ "za" "Fold" ];
       "<C-q>" = [ ":q<CR>" "Quit" ];
       ${''"''} = [ ":nohl<CR>" "no highlight" ];
       "<C-i>" = [ "<C-i>" "jump forward" ];
@@ -99,20 +106,20 @@
       "<C-l>" = [ "<C-w>l" "Move to the window to the right" ];
       "<C-Up>" = [ ":resize -2<CR>" "Make the smaller on the y axis" ];
       "<C-Down>" = [ ":resize +2<CR>" "Make the window bigger on the y axis" ];
-      "<C-Left>" = [ ":vertical resize +2<CR>" "Make the window bigger on the x axis" ];
-      "<C-Right>" = [ ":vertical resize -2<CR>" "Make the window smaller on the x axis" ];
+      "<C-Left>" =
+        [ ":vertical resize +2<CR>" "Make the window bigger on the x axis" ];
+      "<C-Right>" =
+        [ ":vertical resize -2<CR>" "Make the window smaller on the x axis" ];
 
       "<leader>" = {
         # LSP <start>
         r = [ (_: "vim.lsp.buf.rename") "Rename" ];
-        l = {
-          name = "LSP";
-          l = [ ":LspInfo<CR>" "Lsp information" ];
-          n = [ ":NullLsInfo<CR>" "Null-ls information" ];
-          j = [ (_: "next_diagnostic") "Go to next diagnostic" ];
-          k = [ (_: "prev_diagnostic") "Go to prev diagnostic" ];
-          d = [ ":Telescope diagnostics<CR>" "Workspace diagnostics" ];
-        };
+        l.name = "LSP";
+        l.l = [ ":LspInfo<CR>" "Lsp information" ];
+        l.n = [ ":NullLsInfo<CR>" "Null-ls information" ];
+        l.j = [ (_: "next_diagnostic") "Go to next diagnostic" ];
+        l.k = [ (_: "prev_diagnostic") "Go to prev diagnostic" ];
+        l.d = [ ":Telescope diagnostics<CR>" "Workspace diagnostics" ];
         # LSP <end>
 
         q = [ ":qa<CR>" "Quit all" ];
@@ -128,7 +135,7 @@
         W = [ "<cmd>wqa<CR>" "Save and quit all" ];
         e = [ (_: "nvim_tree_focus_toggle()") "Nvim tree" ];
         h = [ ":lua print('harpooning')<CR>" "Harpoon" ];
-        E = [ ":NvimTreeToggle<CR>" "Nvim tree troggle" ];
+        E = [ ":NvimTreeToggle<CR>" "Nvim tree toggle" ];
         Q = [ "<cmd>wqa!<CR>" "Quit all, no matter what" ];
         s = [ ":Telescope live_grep<CR>" "Project search" ];
         t = [ (_: "custom_toggle_term()") "Toggle terminal" ];
@@ -136,27 +143,29 @@
         n = [ ":cnext<CR>" "Next item on the quick fix list" ];
         N = [ ":cprev<CR>" "Previous item on the quick fix list" ];
 
-        V = {
-          name = "vim";
-          c = [ (_: ''":e "  .. vim.fn.stdpath("config") .. "/init.lua<CR>"'') "Edit config" ];
-        };
+        V.name = "vim";
+        V.c = [
+          (_: ''":e "  .. vim.fn.stdpath("config") .. "/init.lua<CR>"'')
+          "Edit config"
+        ];
 
-        g = {
-          name = "git";
-          b = [ ":Gitsigns blame_line<CR>" "Blame" ];
-          d = [ ":Gitsigns diffthis HEAD<CR>" "Diff" ];
-          j = [ ":Gitsigns next_hunk<CR>" "Next hunk" ];
-          k = [ ":Gitsigns prev_hunk<CR>" "Prev hunk" ];
-          r = [ ":Gitsigns reset_hunk<CR>" "Reset hunk" ];
-          s = [ ":Gitsigns state_hunk<CR>" "Stage hunk" ];
-          R = [ ":Gitsigns reset_buffer<CR>" "Reset hunk" ];
-          p = [ ":Gitsigns preview_hunk<CR>" "Preview hunk" ];
-          u = [ ":Gitsigns undo_stage_hunk<CR>" "Unstage hunk" ];
-          # Telescope
-          c = [ ":Telescope git_commits<CR>" "Checkout commit" ];
-          o = [ ":Telescope git_status<CR>" "Open changed files" ];
-          C = [ ":Telescope git_bcommits<CR>" "Checkout commit (for current file)" ];
-        };
+        g.name = "git";
+        g.b = [ ":Gitsigns blame_line<CR>" "Blame" ];
+        g.d = [ ":Gitsigns diffthis HEAD<CR>" "Diff" ];
+        g.j = [ ":Gitsigns next_hunk<CR>" "Next hunk" ];
+        g.k = [ ":Gitsigns prev_hunk<CR>" "Prev hunk" ];
+        g.r = [ ":Gitsigns reset_hunk<CR>" "Reset hunk" ];
+        g.s = [ ":Gitsigns state_hunk<CR>" "Stage hunk" ];
+        g.R = [ ":Gitsigns reset_buffer<CR>" "Reset hunk" ];
+        g.p = [ ":Gitsigns preview_hunk<CR>" "Preview hunk" ];
+        g.u = [ ":Gitsigns undo_stage_hunk<CR>" "Unstage hunk" ];
+        g. # Telescope
+        g.c = [ ":Telescope git_commits<CR>" "Checkout commit" ];
+        g.o = [ ":Telescope git_status<CR>" "Open changed files" ];
+        g.C = [
+          ":Telescope git_bcommits<CR>"
+          "Checkout commit (for current file)"
+        ];
       };
     };
 
@@ -168,6 +177,7 @@
     };
 
     visual = {
+      useWhichKey = true;
       "<A-j>" = [ ":m >+1<CR>gv=gv" "move current selection down" ];
       "<A-K>" = [ ":m <-2<CR>gv=gv" "move current selection up" ];
       "<" = [ "<gv" "dedent" ];
@@ -181,7 +191,7 @@
 
     terminal = {
       "<Esc>" = [ "<Cmd>ToggleTermToggleAll<CR>" "Toggle the terminal" ];
-      "jk" = [ ''<C-\><C-n>'' "Escape terminal mode" ];
+      "jk" = [ "<C-\\><C-n>" "Escape terminal mode" ];
       "<C-h>" = [ "<Cmd>wincmd h<CR>" "Move to the left window" ];
       "<C-k>" = [ "<Cmd>wincmd k<CR>" "Move to the up window" ];
       "<C-j>" = [ "<Cmd>wincmd j<CR>" "Move to the down window" ];
