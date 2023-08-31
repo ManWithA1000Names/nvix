@@ -77,7 +77,7 @@ local function fileInfo()
 		local devicons_present, devicons = pcall(require, "nvim-web-devicons")
 
 		if devicons_present then
-      -- TODO: get and set the color as well
+			-- TODO: get and set the color as well
 			local ft_icon = devicons.get_icon(filename)
 			icon = (ft_icon ~= nil and " " .. ft_icon) or ""
 		end

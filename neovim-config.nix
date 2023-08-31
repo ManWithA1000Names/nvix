@@ -6,9 +6,7 @@
       vim.opt.isfname:append("@-@")
       vim.opt.shortmess:append("c")
       vim.opt.listchars:append("eol:↴")
-
-      vim.cmd [[highlight IndentBlanklineIndent1 guibg=#1A1B26 gui=nocombine]]
-      vim.cmd [[highlight IndentBlanklineIndent2 guibg=#191924 gui=nocombine]]
+      vim.opt.listchars:append("space:⋅")
     '';
     laststatus = 3;
     list = true;
@@ -48,6 +46,7 @@
     updatetime = 100;
 
     colorcolumn = "100";
+    timeout = true;
     timeoutlen = 200;
     pumheight = 10;
     splitright = true;
@@ -66,12 +65,24 @@
   };
 
   colorscheme = "tokyonight-night";
+
+  ftkeybinds = [{
+    filetypes = [ "rust" ];
+    lua = ''
+      local ok_rust, rust = pcall(require, "rust-tools");
+      if not ok_rust then
+        return
+      end
+    '';
+    normal = { g.h = [ (_: "rust.hover_actions.hover_actions") "Hover" ]; };
+  }];
+
   keybinds = {
     lua = builtins.readFile ./lua/keybind_functions.lua;
     normal = {
       useWhichKey = true;
       # LSP <start>
-      ";" = [ (_: "fmt") "Format" ];
+      formatKey = ";";
       g.h = [ (_: "vim.lsp.buf.hover") "Hover" ];
       g.l = [ (_: "line_diagnostics") "line diagnostics" ];
       g.a = [ (_: "vim.lsp.buf.code_action") "Code action" ];

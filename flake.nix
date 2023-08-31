@@ -90,7 +90,8 @@
 
     # Syntax highlighting <start> {
     tree-sitter = {
-      url = "github:nvim-treesitter/nvim-treesitter";
+      url =
+        "github:nvim-treesitter/nvim-treesitter/4c4d586a05e236d8199ab6faab8cb733a9b5bd24";
       flake = false;
     };
     # } Syntax highlighting <end>
@@ -154,26 +155,22 @@
       url = "github:ahmedkhalf/project.nvim";
       flake = false;
     };
-
-    indent_blankline = {
-      url = "github:/lukas-reineke/indent-blankline.nvim";
-      flake = false;
-    };
   };
 
   outputs = { self, nixpkgs, vix, ... }@plugin-sources:
     vix.mkFlake {
+      inherit nixpkgs;
+      less = [ "self" "nixpkgs" "vix" ];
       config = import ./neovim-config.nix;
       plugin-sources = plugin-sources // {
         statusline = ./custom-plugins/statusline;
         signature = ./custom-plugins/signature;
       };
-      less = [ "self" "nixpkgs" "vix" ];
       plugin-setups = {
-        horizon = {
-          setup = false;
-          lazy = true;
-        };
+        fidget = { setup = true; };
+        signature = { setup = true; };
+        toggleterm = { setup = true; };
+        project_nvim = { setup = true; };
 
         nvim-tree = {
           setup = builtins.readFile ./lua/plugins-configs/nvim-tree.lua;
@@ -189,17 +186,12 @@
         lspconfig = {
           setup = builtins.readFile ./lua/plugins-configs/lspconfig.lua;
         };
-        comment = {
-          setup = builtins.readFile ./lua/plugins-configs/comment.lua;
-          lazy.events = [ "BufRead" ];
-        };
         cmp = { setup = builtins.readFile ./lua/plugins-configs/cmp.lua; };
-        nvim-autopairs = {
-          setup = builtins.readFile ./lua/plugins-configs/autopairs.lua;
-          lazy.events = [ "InsertEnter" ];
-        };
 
-        toggleterm = { setup = true; };
+        horizon = {
+          setup = false;
+          lazy = true;
+        };
 
         gitsigns = {
           setup = ''
@@ -220,20 +212,16 @@
           lazy = true;
         };
 
-        project_nvim = { setup = true; };
-        fidget = { setup = true; };
-        indent_blankline = {
-          setup = {
-            char = "";
-            char_highlight_list =
-              [ "IndentBlanklineIndent1" "IndentBlanklineIndent2" ];
-            space_char_highlight_list =
-              [ "IndentBlanklineIndent1" "IndentBlanklineIndent2" ];
-            show_end_of_line = true;
-            show_trailing_blankline_indent = false;
-          };
+        comment = {
+          setup = builtins.readFile ./lua/plugins-configs/comment.lua;
           lazy.events = [ "BufRead" ];
         };
+
+        nvim-autopairs = {
+          setup = builtins.readFile ./lua/plugins-configs/autopairs.lua;
+          lazy.events = [ "InsertEnter" ];
+        };
+
         bufferline = {
           setup = {
             options = {
@@ -246,6 +234,7 @@
               }];
             };
           };
+          lazy.events = [ "BufRead" ];
         };
         rust-tools = {
           setup = pkgs: {
@@ -265,10 +254,6 @@
             };
             # dap = {};
             server = {
-              on_attach = _: ''
-                function(client, bufnr)
-                  require"signature".setup(client)
-                end'';
               cmd = [ (pkgs.lib.getExe pkgs.rust-analyzer) ];
               settings = {
                 rust-analyzer = {
@@ -280,10 +265,6 @@
                 };
               };
             };
-          };
-          lazy = {
-            pattern = [ "rust" ];
-            events = [ "FileType" ];
           };
         };
       };
@@ -302,20 +283,5 @@
         vix.tool_presets_per_language.nix
         vix.tool_presets_per_language.haskell
       ];
-      on_ls_attach = _: ''
-        function(client, _bufnr)
-          print("called on attach")
-          if client.server_capabilities.signatureHelpProvider then
-            print("calling the signature thing")
-            local ok, sig = pcall(require, "signature");
-            if not ok then
-              print("failed to require signature");
-              return
-            end
-            sig.setup(client)
-          else
-            print("language server " .. client.name .. " does not support signature help.")
-          end
-        end'';
     };
 }

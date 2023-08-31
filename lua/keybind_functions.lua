@@ -11,9 +11,6 @@ local function line_diagnostics()
 	vim.diagnostic.open_float({ border = "rounded" })
 end
 
-local function fmt()
-	vim.lsp.buf.format()
-end
 -- LSP <end>
 
 local function new_term()
