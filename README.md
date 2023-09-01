@@ -3,8 +3,8 @@
 TODO:
 
 - [x] Make ~~everything~~ lazy inspired by: [lazy.nvim](https://github.com/folke/lazy.nvim)
-- [ ] Make colorschemes lazy.
-- [ ] Configure cmp better.
-- [ ] Implement "language" specific key bindings.
+- [x] Make colorschemes lazy.
+- [x] Configure cmp better.
+- [x] Implement "language" specific key bindings.
 - [x] Set up debugging
 - [x] Implement non which-key keybindings.
