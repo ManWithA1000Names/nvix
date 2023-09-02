@@ -161,7 +161,7 @@
     vix.mkFlake {
       inherit nixpkgs;
       less = [ "self" "nixpkgs" "vix" ];
-      config = import ./neovim-config.nix;
+      config = import ./neovim-config.nix vix;
       plugin-sources = plugin-sources // {
         statusline = ./custom-plugins/statusline;
         signature = ./custom-plugins/signature;
@@ -269,19 +269,19 @@
         };
       };
       tools = [
-        vix.tool_presets_per_language.go
-        vix.tool_presets_per_language."c/cpp"
-        vix.tool_presets_per_language.lua
-        vix.tool_presets_per_language.elm
-        vix.tool_presets_per_language.tailwindcss
-        vix.tool_presets_per_language.python
-        vix.tool_presets_per_language.toml
-        vix.tool_presets_per_language.sh
-        vix.tool_presets_per_language.json
-        vix.tool_presets_per_language."ts/js"
-        vix.tool_presets_per_language.yaml
-        vix.tool_presets_per_language.nix
-        vix.tool_presets_per_language.haskell
+        vix.tools-for.go
+        vix.tools-for."c/cpp"
+        vix.tools-for.lua
+        vix.tools-for.elm
+        vix.tools-for.tailwindcss
+        vix.tools-for.python
+        vix.tools-for.toml
+        vix.tools-for.sh
+        vix.tools-for.json
+        vix.tools-for."ts/js"
+        vix.tools-for.yaml
+        vix.tools-for.nix
+        vix.tools-for.haskell
       ];
     };
 }

@@ -1,4 +1,4 @@
-{
+vix: {
   init = "";
 
   set = {
@@ -67,7 +67,7 @@
   colorscheme = "tokyonight-night";
 
   ftkeybinds = [{
-    filetypes = [ "rust" ];
+    filetypes = vix.filetypes-for.rust;
     lua = ''
       local ok_rust, rust = pcall(require, "rust-tools");
       if not ok_rust then
