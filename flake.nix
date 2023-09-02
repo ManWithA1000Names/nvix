@@ -20,7 +20,6 @@
       url = "github:jose-elias-alvarez/null-ls.nvim";
       flake = false;
     };
-
     fidget = {
       url = "github:j-hui/fidget.nvim/legacy";
       flake = false;
@@ -237,6 +236,7 @@
           lazy.events = [ "BufRead" ];
         };
         rust-tools = {
+          lua = ''vim.defer_fn(function() vim.cmd[[LspStart]] end, 250)'';
           setup = pkgs: {
             tools = {
               executor = _: ''require("rust-tools/executors").termopen'';
@@ -265,6 +265,10 @@
                 };
               };
             };
+          };
+          lazy = {
+            pattern = vix.filetypes-for.rust;
+            events = [ "FileType" ];
           };
         };
       };
