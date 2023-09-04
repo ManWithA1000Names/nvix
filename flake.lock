@@ -538,11 +538,11 @@
         "nilm": "nilm"
       },
       "locked": {
-        "lastModified": 1693664921,
-        "narHash": "sha256-08Q/v2WvF0vIp7gWIDvmzUKgeJBUYJEwRqX2rCQfW6w=",
+        "lastModified": 1693835842,
+        "narHash": "sha256-ZmcQGuQtRGZv4kDqXRoBXvHBPGK+9iC0ZZboEApaP40=",
         "owner": "manwitha1000names",
         "repo": "vix",
-        "rev": "ce6a8a338de31c09e173fecdf9cfc5010dcc2013",
+        "rev": "815e784c9921456720450e2f64b7c9e958f59f04",
         "type": "github"
       },
       "original": {
