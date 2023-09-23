@@ -236,7 +236,7 @@
           lazy.events = [ "BufRead" ];
         };
         rust-tools = {
-          lua = ''vim.defer_fn(function() vim.cmd[[LspStart]] end, 250)'';
+          lua = "vim.defer_fn(function() vim.cmd[[LspStart]] end, 250)";
           setup = pkgs: {
             tools = {
               executor = _: ''require("rust-tools/executors").termopen'';
@@ -274,6 +274,7 @@
       };
       tools = [
         vix.tools-for.go
+        vix.tools-for.zip
         vix.tools-for."c/cpp"
         vix.tools-for.lua
         vix.tools-for.elm
