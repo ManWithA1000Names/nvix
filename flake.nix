@@ -274,7 +274,7 @@
       };
       tools = [
         vix.tools-for.go
-        vix.tools-for.zip
+        vix.tools-for.zig
         vix.tools-for."c/cpp"
         vix.tools-for.lua
         vix.tools-for.elm
