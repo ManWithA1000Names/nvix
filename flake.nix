@@ -90,7 +90,7 @@
     # Syntax highlighting <start> {
     tree-sitter = {
       url =
-        "github:nvim-treesitter/nvim-treesitter/4c4d586a05e236d8199ab6faab8cb733a9b5bd24";
+        "github:nvim-treesitter/nvim-treesitter";
       flake = false;
     };
     # } Syntax highlighting <end>
