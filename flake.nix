@@ -3,7 +3,8 @@
 
   inputs = {
     vix.url = "github:manwitha1000names/vix";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
+
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     plenary = {
       url = "github:nvim-lua/plenary.nvim";
@@ -89,8 +90,7 @@
 
     # Syntax highlighting <start> {
     tree-sitter = {
-      url =
-        "github:nvim-treesitter/nvim-treesitter";
+      url = "github:nvim-treesitter/nvim-treesitter";
       flake = false;
     };
     # } Syntax highlighting <end>
