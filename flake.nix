@@ -10,7 +10,6 @@
       url = "github:nvim-lua/plenary.nvim";
       flake = false;
     };
-
     # Languages <start> {
     lspconfig = {
       url = "github:neovim/nvim-lspconfig";
@@ -288,6 +287,7 @@
         vix.tools-for.yaml
         vix.tools-for.nix
         vix.tools-for.haskell
+        vix.tools-for.julia
       ];
     };
 }
