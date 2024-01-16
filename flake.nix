@@ -289,6 +289,7 @@
         vix.tools-for.haskell
         vix.tools-for.julia
         vix.tools-for.elixir
+        vix.tools-for.java
       ];
     };
 }
