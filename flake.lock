@@ -322,22 +322,6 @@
         "type": "github"
       }
     },
-    "nvim-ts-context-commentstring": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1706896266,
-        "narHash": "sha256-RiisnhiyY/+yVc7Cqn8VFOaa4J7iXGCTguX6eRNIDNQ=",
-        "owner": "JoosepAlviste",
-        "repo": "nvim-ts-context-commentstring",
-        "rev": "7ab799a9792f7cf3883cf28c6a00ad431f3d382a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "JoosepAlviste",
-        "repo": "nvim-ts-context-commentstring",
-        "type": "github"
-      }
-    },
     "nvim-web-devicons": {
       "flake": false,
       "locked": {
@@ -406,7 +390,6 @@
         "nvim-autopairs": "nvim-autopairs",
         "nvim-tree": "nvim-tree",
         "nvim-ts-autotag": "nvim-ts-autotag",
-        "nvim-ts-context-commentstring": "nvim-ts-context-commentstring",
         "nvim-web-devicons": "nvim-web-devicons",
         "plenary": "plenary",
         "project_nvim": "project_nvim",
@@ -416,6 +399,7 @@
         "toggleterm": "toggleterm",
         "tokyonight": "tokyonight",
         "tree-sitter": "tree-sitter",
+        "ts_context_commentstring": "ts_context_commentstring",
         "vix": "vix",
         "which-key": "which-key"
       }
@@ -528,6 +512,22 @@
       "original": {
         "owner": "nvim-treesitter",
         "repo": "nvim-treesitter",
+        "type": "github"
+      }
+    },
+    "ts_context_commentstring": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1706896266,
+        "narHash": "sha256-RiisnhiyY/+yVc7Cqn8VFOaa4J7iXGCTguX6eRNIDNQ=",
+        "owner": "JoosepAlviste",
+        "repo": "nvim-ts-context-commentstring",
+        "rev": "7ab799a9792f7cf3883cf28c6a00ad431f3d382a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "JoosepAlviste",
+        "repo": "nvim-ts-context-commentstring",
         "type": "github"
       }
     },

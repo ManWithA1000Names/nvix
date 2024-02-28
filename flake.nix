@@ -138,7 +138,7 @@
       flake = false;
     };
 
-    nvim-ts-context-commentstring = {
+    ts_context_commentstring = {
       url = "github:JoosepAlviste/nvim-ts-context-commentstring";
       flake = false;
     };
@@ -215,6 +215,10 @@
           lazy.events = [ "BufRead" ];
         };
 
+        ts_context_commentstring = {
+          setup = { enable_autocmd = false; };
+          lazy.events = [ "BufRead" ];
+        };
         nvim-autopairs = {
           setup = builtins.readFile ./lua/plugins-configs/autopairs.lua;
           lazy.events = [ "InsertEnter" ];

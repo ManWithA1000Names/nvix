@@ -61,6 +61,7 @@ vix: {
     leader = " ";
     mapleader = " ";
     loaded_netrwPlugin = 1;
+    skip_ts_context_commentstring_module = true;
     markdown_fenced_languages = [ "ts=typescript" ];
   };
 
