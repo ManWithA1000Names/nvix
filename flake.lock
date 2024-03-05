@@ -195,6 +195,22 @@
         "type": "github"
       }
     },
+    "lsp_signature": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1709592196,
+        "narHash": "sha256-WAQ8DWjNWKYBbELC/M8ClGxU0cAqB4X1TlkWIEBqp24=",
+        "owner": "ray-x",
+        "repo": "lsp_signature.nvim",
+        "rev": "e92b4e7073345b2a30a56b20db3d541a9aa2771e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ray-x",
+        "repo": "lsp_signature.nvim",
+        "type": "github"
+      }
+    },
     "lspconfig": {
       "flake": false,
       "locked": {
@@ -383,6 +399,7 @@
         "fidget": "fidget",
         "gitsigns": "gitsigns",
         "horizon": "horizon",
+        "lsp_signature": "lsp_signature",
         "lspconfig": "lspconfig",
         "luasnip": "luasnip",
         "nixpkgs": "nixpkgs",

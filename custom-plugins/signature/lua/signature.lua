@@ -95,22 +95,16 @@ end
 
 function M.setup()
 	local _start_client = vim.lsp.start_client
+
 	vim.lsp.start_client = function(lsp_config)
-		if lsp_config.name == "null-ls" then
-			return _start_client(lsp_config)
-		end
 		if lsp_config.on_attach == nil then
-			lsp_config.on_attach = function(client)
-				if client.server_capabilities.signatureHelpProvider then
-					M.setup_client(client)
-				end
+			lsp_config.on_attach = function(client, bufnr)
+				M.setup_client(client)
 			end
 		else
 			local _on_attach = lsp_config.on_attach
 			lsp_config.on_attach = function(client, bufnr)
-				if client.server_capabilities.signatureHelpProvider then
-					M.setup_client(client)
-				end
+				M.setup_client(client)
 				_on_attach(client, bufnr)
 			end
 		end

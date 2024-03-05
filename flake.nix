@@ -34,6 +34,11 @@
       url = "github:b0o/SchemaStore.nvim";
       flake = false;
     };
+
+    lsp_signature = {
+      url = "github:ray-x/lsp_signature.nvim";
+      flake = false;
+    };
     # } Languages <end>
 
     # Completions <start> {
@@ -162,13 +167,15 @@
       config = import ./neovim-config.nix vix;
       plugin-sources = plugin-sources // {
         statusline = ./custom-plugins/statusline;
-        signature = ./custom-plugins/signature;
+        # signature = ./custom-plugins/signature;
       };
       plugin-setups = {
         fidget = { setup = true; };
-        signature = { setup = true; };
+        # signature = { setup = true; };
         toggleterm = { setup = true; };
         project_nvim = { setup = true; };
+
+        lsp_signature = { setup = { hint_enable = false; }; };
 
         nvim-tree = {
           setup = builtins.readFile ./lua/plugins-configs/nvim-tree.lua;
