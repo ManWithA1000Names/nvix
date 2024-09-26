@@ -301,6 +301,7 @@
         vix.tools-for.julia
         vix.tools-for.elixir
         vix.tools-for.java
+        vix.tools-for.php
       ];
     };
 }
