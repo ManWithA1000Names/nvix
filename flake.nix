@@ -302,6 +302,7 @@
         vix.tools-for.elixir
         vix.tools-for.java
         vix.tools-for.php
+        vix.tools-for.gleam
       ];
     };
 }

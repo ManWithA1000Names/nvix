@@ -198,11 +198,11 @@
     "lsp_signature": {
       "flake": false,
       "locked": {
-        "lastModified": 1718424851,
-        "narHash": "sha256-cU6Xz1ZzRU5JM1qFiUrT3m02JcTJUQR6Grlf87j9ztw=",
+        "lastModified": 1726445971,
+        "narHash": "sha256-W6bN3R10B84noK7MOzvUOIc82WwyojIS97iFL/dO5yk=",
         "owner": "ray-x",
         "repo": "lsp_signature.nvim",
-        "rev": "a38da0a61c172bb59e34befc12efe48359884793",
+        "rev": "fc38521ea4d9ec8dbd4c2819ba8126cea743943b",
         "type": "github"
       },
       "original": {
@@ -554,11 +554,11 @@
         "nilm": "nilm"
       },
       "locked": {
-        "lastModified": 1727391595,
-        "narHash": "sha256-AEOSYtTXckMnX8ZSa8rwPXzeG6cOvCWGdWtj39Hvk1Q=",
+        "lastModified": 1728811247,
+        "narHash": "sha256-+2oR25B8162AAL+VSv7QK68eUeDAlw6Jx89U4F4iJYQ=",
         "owner": "manwitha1000names",
         "repo": "vix",
-        "rev": "a689e894db63914bb209801579f60737f895279d",
+        "rev": "47197282313e3fe53318c56363715218b7cff5ef",
         "type": "github"
       },
       "original": {
