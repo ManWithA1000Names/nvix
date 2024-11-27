@@ -5,4 +5,5 @@
 - [ ] [which-key.nvim](https://github.com/folke/which-key.nvim)
 - [ ] [trouble.nvim](https://github.com/folke/trouble.nvim)
 - [ ] [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
+- [ ] [gitsigns](https://github.com/lewis6991/gitsigns.nvim)
 - [ ] []
