@@ -67,17 +67,6 @@ vix: {
 
   colorscheme = "tokyonight-night";
 
-  ftkeybinds = [{
-    filetypes = vix.filetypes-for.rust;
-    lua = ''
-      local ok_rust, rust = pcall(require, "rust-tools");
-      if not ok_rust then
-        return
-      end
-    '';
-    normal = { g.h = [ (_: "rust.hover_actions.hover_actions") "Hover" ]; };
-  }];
-
   keybinds = {
     lua = builtins.readFile ./lua/keybind_functions.lua;
     normal = {

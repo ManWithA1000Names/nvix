@@ -21,12 +21,7 @@
       flake = false;
     };
     fidget = {
-      url = "github:j-hui/fidget.nvim/legacy";
-      flake = false;
-    };
-
-    rust-tools = {
-      url = "github:simrat39/rust-tools.nvim";
+      url = "github:j-hui/fidget.nvim";
       flake = false;
     };
 
@@ -245,42 +240,6 @@
           };
           lazy.events = [ "BufRead" ];
         };
-        rust-tools = {
-          lua = "vim.defer_fn(function() vim.cmd[[LspStart]] end, 250)";
-          setup = pkgs: {
-            tools = {
-              executor = _: ''require("rust-tools/executors").termopen'';
-              reload_workspace_from_cargo_toml = true;
-              runnables = { use_telescope = true; };
-              inlay_hints = { auto = false; };
-              hover_actions = { border = "rounded"; };
-              on_initialized = _: ''
-                function()
-                  vim.api.nvim_create_autocmd({"BufWritePost", "BufEnter", "CursorHold", "InsertLeave"}, {
-                    pattern = {"*.rs"},
-                    callback = function() pcall(vim.lsp.codelens.refresh) end,
-                  });
-                end'';
-            };
-            # dap = {};
-            server = {
-              cmd = [ (pkgs.lib.getExe pkgs.rust-analyzer) ];
-              settings = {
-                rust-analyzer = {
-                  lens.enalbe = true;
-                  checkOnSave = {
-                    enable = true;
-                    command = "clippy";
-                  };
-                };
-              };
-            };
-          };
-          lazy = {
-            pattern = vix.filetypes-for.rust;
-            events = [ "FileType" ];
-          };
-        };
       };
       tools = [
         vix.tools-for.go
@@ -303,6 +262,7 @@
         vix.tools-for.java
         vix.tools-for.php
         vix.tools-for.gleam
+        vix.tools-for.rust
       ];
     };
 }
